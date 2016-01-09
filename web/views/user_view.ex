@@ -11,4 +11,10 @@ defmodule Rumbl.UserView do
 	def render("user.json", %{user: user}) do
 		%{id: user.id, username: user.username}
 	end
+
+	def translate_error({msg, opts}) do
+    String.replace(msg, "%{count}", to_string(opts[:count]))
+  end
+
+  def translate_error(msg), do: msg
 end
