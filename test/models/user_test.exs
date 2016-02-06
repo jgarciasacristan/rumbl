@@ -15,12 +15,20 @@ defmodule Rubm.UserTest do
 		refute  changeset.valid?
 	end
 
+	
+  test "changeset does not accept long usernames" do
+    attrs = Map.put(@valid_attrs, :username, String.duplicate("a", 30))
+    assert username: {"should be at most %{count} characters", [count: 20]} in
+           errors_on(%User{}, attrs)
+  end
+
 	test "registration_changeset password must be at least 6 char long" do
 		attrs = Map.put(@valid_attrs, :password, "no")
     changeset = User.registration_changeset(%User{}, attrs)
 		refute  changeset.valid?
-		assert {:password, {"should be at least %{count} characters", count: 6}} in changeset.errors
+		assert {:password, {"should be at least %{count} character(s)", count: 6}} in changeset.errors
 	end
+
 
 	test "registration_changeset with valid attributes hashes password" do
 		attrs = Map.put(@valid_attrs, :password, "superstrong")
