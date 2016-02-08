@@ -61,7 +61,7 @@
 
 // export default socket
 
-import {Socket} from "deps/phoenix/web/static/js/phoenix"
+import {Socket} from "phoenix"
 
 let socket = new Socket("/socket", {
   params: {token: window.userToken},

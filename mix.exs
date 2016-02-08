@@ -4,6 +4,10 @@ defmodule Rumbl.Mixfile do
   def project do
     [app: :rumbl,
      version: "0.0.1",
+     build_path: "../../_build",
+     config_path: "../../config/config.exs",
+     deps_path: "../../deps",
+     lockfile: "../../mix.lock",
      elixir: "~> 1.2",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix] ++ Mix.compilers,
@@ -18,7 +22,7 @@ defmodule Rumbl.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {Rumbl, []},
-     applications: [:phoenix, :phoenix_html, :cowboy, :logger,
+     applications: [:phoenix, :phoenix_html, :cowboy, :logger, :info_sys,
                     :phoenix_ecto, :postgrex, :comeonin]]
   end
 
@@ -30,7 +34,7 @@ defmodule Rumbl.Mixfile do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [{:phoenix, "~> 1.1.2"},
+    [{:phoenix, "~> 1.1.4"},
      {:phoenix_ecto, "~> 2.0"},
      {:postgrex, ">= 0.0.0"},
      {:phoenix_html, "~> 2.3"},
@@ -38,7 +42,7 @@ defmodule Rumbl.Mixfile do
      {:gettext, "~> 0.9"},
      {:cowboy, "~> 1.0"},
 		 {:comeonin, "~> 1.0"},
-     {:sweet_xml, "~> 0.5.0"}]
+     {:info_sys, in_umbrella: true}]
   end
 
   # Aliases are shortcut or tasks specific to the current project.
